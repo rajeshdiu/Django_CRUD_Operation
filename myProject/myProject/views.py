@@ -7,12 +7,15 @@ from myApp.models import Employees
 
 def homePage(request):
     
+    user=request.user
     emp=Employees.objects.all()
     context={
          'emp':emp   
     }
     
-    return render(request,"home.html",context)
+    # return render(request,"home.html",)
+
+    return render(request, 'home.html', {'user_name': user, 'emp': emp})
 
 
 def loginPage(request):
@@ -114,11 +117,5 @@ def deletePage(request,id):
     
     emp=Employees.objects.filter(id=id)
     emp.delete()
-    
-    
-    content={
-        "emp":emp
-    }
-    
     return redirect("homePage")
     
