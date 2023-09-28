@@ -108,3 +108,17 @@ def updatePage(request,id):
         
         
     return render(request,"home.html")
+
+
+def deletePage(request,id):
+    
+    emp=Employees.objects.filter(id=id)
+    emp.delete()
+    
+    
+    content={
+        "emp":emp
+    }
+    
+    return redirect("homePage")
+    

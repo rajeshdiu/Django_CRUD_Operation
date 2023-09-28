@@ -299,7 +299,7 @@
 						<td>{{ i.mobile }}</td>
 						<td>
 							<a href="#editEmployeeModal-{{forloop.counter}}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+							<a href="#deleteEmployeeModal-{{forloop.counter}}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
 					</tr>
 					{% endfor %}
@@ -402,8 +402,10 @@
 
     {% endfor %}
 
+
+	{% for i in emp %}
 	<!-- Delete Modal HTML -->
-	<div id="deleteEmployeeModal" class="modal fade">
+	<div id="deleteEmployeeModal-{{forloop.counter}}" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<form>
@@ -413,16 +415,17 @@
 					</div>
 					<div class="modal-body">					
 						<p>Are you sure you want to delete these Records?</p>
-						<p class="text-warning"><small>This action cannot be undone.</small></p>
+						<p class="text-warning"><small>{{i.name}} Are you want to Delete?</small></p>
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-danger" value="Delete">
+						<a href="/deletePage/{{i.id}}" type="Delete" class="btn btn-danger" >Delete</a>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
+	{% endfor %}
 </body>
 
 
